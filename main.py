@@ -1,7 +1,3 @@
-# todo for the 1st time start, the user must choose configuration
-# todo 1 let the user choose from 2 settings, mail verification or authenticator app
-# todo we will manage a user database to choose if user is registered for mail or authentication
-# todo 2 if user choose mail generate totp code and mail it, return that code in respone to calling application so it can verify the code
 # todo 2 if user choose authenticator app, share a QRCode that will share a secret key with the authenticator
 # todo 3 user will share the key and confirm its authenticity
 # todo 4 user can request new key in mail method
@@ -68,13 +64,14 @@ def init_function():
 
 def run_function(mail: str):
     # if mail is true, send otp to mail
-    if environ.get("METHOD") is None:
+    method = environ.get("METHOD")
+    if method is None:
         print("Please first init the program")
     else:
-        if environ.get("METHOD") == "mail":
+        if method == "mail":
             mail_helper(send_to=mail)
-    # if google auth is true, generate otp from secret key and send it to app, so it can verify
-    # Placeholder for another function
+        elif method == "auth":
+            pass
     print("Another function executed.")
 
 
