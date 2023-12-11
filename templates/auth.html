@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>OTP Form</title>
+    <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        input
+{
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <h2 id="response"></h2>
+    <form id="otpForm">
+        {% csrf_token %}
+        <div class="form-group d-flex flex-column align-items-center">
+            <label for="otpInput" class="mb-3">Enter OTP:</label>
+            <div id="otpInputGroup" class="mb-3">
+                <!-- Individual input fields for OTP -->
+            </div>
+        </div>
+        <button class="btn btn-primary w-100">Submit</button>
+    </form>
+
+    <div id="timerContainer" class="mt-3">
+        <p id="timerText">Time remaining: <span id="timer">60</span> seconds</p>
+        <button id="resendOtpBtn" class="btn btn-link" style="display: none;">Resend OTP</button>
+    </div>
+</div>
+
+
+
+<!-- Your custom JavaScript file -->
+<script>
+    const csrfToken = `{% csrf_token %}`;
+    $(document).ready(function () {
+    var timerSeconds = 60;
+    var timerInterval;
+
+    // Function to update the timer text
+    function updateTimer() {
+        $('#timer').text(timerSeconds);
+        if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            $('#timerText').hide();
+            $('#resendOtpBtn').show();
+        }
+        timerSeconds--;
+    }
+
+    // Function to generate individual OTP input fields
+    function generateOtpFields(otpLength) {
+        var otpInputGroup = $('#otpInputGroup');
+        otpInputGroup.empty();  // Clear existing fields
+        for (var i = 0; i < otpLength; i++) {
+            otpInputGroup.append('<input type="text" maxlength="1">');
+        }
+    }
+
+    // Start the timer when the page loads
+    timerInterval = setInterval(updateTimer, 1000);
+
+    // Resend OTP button click event
+    $('#resendOtpBtn').on('click', function () {
+        // Simulate sending OTP to API (replace with your actual AJAX call)
+        alert('Resending OTP...');
+        // Reset timer and show it again
+        timerSeconds = 60;
+        $('#timerText').show();
+        $('#resendOtpBtn').hide();
+        timerInterval = setInterval(updateTimer, 1000);
+        // Generate new OTP input fields
+        generateOtpFields(6);  // Change the OTP length as needed
+    });
+
+    // Form submit event
+    $('#otpForm').on('submit', function (e) {
+        e.preventDefault();
+        // Collect OTP from input fields
+        let enteredOtp = '';
+        $('.otp-digit').each(function () {
+            enteredOtp += $(this).val();
+        });
+        // Simulate sending OTP to API (replace with your actual AJAX call)
+        $.ajax({
+            url: 'verify',  // Update with your actual URL
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            data: {
+                otp: enteredOtp,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },  // Send the entered OTP as data
+            success: function (response) {
+                // Handle the success response from the server
+                $("#response").val(response)
+                console.log(response);
+                // You can redirect, show a message, etc. based on the server response
+            },
+            error: function (error) {
+                $("#response").text(error.statusText)
+                // Handle the error response from the server
+                console.error(error);
+            }
+        });
+    });
+
+    // Initial generation of OTP input fields
+    generateOtpFields(6);  // Change the OTP length as needed
+});
+
+</script>
+</body>
+</html>

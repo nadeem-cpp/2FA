@@ -2,9 +2,7 @@
 # todo 3 user will share the key and confirm its authenticity
 # todo 4 user can request new key in mail method
 # todo since it is a time based, so after 30 seconds key will expire
-import sys
 from os import environ
-from mail.mail import mail_helper
 
 
 def email_method_init():
@@ -62,41 +60,5 @@ def init_function():
             print("Kindly choose between 1 and 2")
 
 
-def run_function(mail: str):
-    # if mail is true, send otp to mail
-    method = environ.get("METHOD")
-    if method is None:
-        print("Please first init the program")
-    else:
-        if method == "mail":
-            mail_helper(send_to=mail)
-        elif method == "auth":
-            pass
-    print("Another function executed.")
-
-
-def main():
-    # Check if a command is provided
-    if len(sys.argv) < 2:
-        print("Usage: python main.py [command]\n command: init,\trun")
-        sys.exit(1)
-
-    # Extract the command from the command line arguments
-    command = sys.argv[1]
-
-    # Perform actions based on the provided command
-    if command == 'init':
-        init_function()
-    elif command == 'run':
-        try:
-            email = sys.argv[2]
-            run_function(email)
-        except IndexError:
-            print("Please enter email in command.\nExample: py main.py run demo@gmail.com")
-    else:
-        print(f"Unknown command: {command}")
-        sys.exit(1)
-
-
 if __name__ == "__main__":
-    main()
+    init_function()

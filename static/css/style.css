@@ -1,0 +1,19 @@
+.logo
+{
+    width: 60px;
+    border-radius: 100px;
+}
+a
+{
+    color: beige;
+}
+.publicMsg
+{
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+#takeCourse
+{
+    text-decoration: none;
+}

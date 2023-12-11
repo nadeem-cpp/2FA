@@ -1,6 +1,7 @@
 """send totp to client on his mail"""
 import smtplib
 from os import environ
+import totp
 
 
 def template(name: str, otp,):
@@ -25,7 +26,6 @@ def send_mail(send_to: str, name: str, otp):
         email_conn.sendmail(from_addr=my_email, to_addrs=send_to, msg=message)
 
 
-def mail_helper(send_to: str):
+def mail_helper(send_to: str, otp):
     name = send_to.split("@")[0]
-    otp = "12324"
     send_mail(send_to, name, otp)
