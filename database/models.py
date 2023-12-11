@@ -4,7 +4,7 @@ from base64 import b32encode
 
 
 class User(db.Model):
-    email = db.Column(db.String(20), primary_key=True)
+    mail = db.Column(db.String(20), primary_key=True)
     secret = db.Column(db.String(32), unique=True, nullable=False)
 
     @classmethod
@@ -12,10 +12,9 @@ class User(db.Model):
         try:
             user = cls.objects.get(mail=email)
             return user.secret
-        except cls.DoesNotExist:
+        except Exception as e:
             secret = cls.generate_secret(email=email)
             user = cls(mail=email, secret=secret)
-            user.save()
             return secret
 
     @classmethod
@@ -24,7 +23,6 @@ class User(db.Model):
         secret = hashlib.sha256(email.encode()).digest()
         # convert it into base 32
         secret_key = b32encode(secret).decode()
-        print(secret_key)
         return secret_key
 
 

@@ -1,1 +1,1 @@
-2 Factor Authentication
+**2-factor Authentication**

@@ -1,7 +1,6 @@
 """send totp to client on his mail"""
 import smtplib
 from os import environ
-import totp
 
 
 def template(name: str, otp,):

@@ -1,7 +1,3 @@
-# todo 2 if user choose authenticator app, share a QRCode that will share a secret key with the authenticator
-# todo 3 user will share the key and confirm its authenticity
-# todo 4 user can request new key in mail method
-# todo since it is a time based, so after 30 seconds key will expire
 from os import environ
 
 
@@ -27,7 +23,7 @@ Best regards,
 Contact Us at: {sender_mail}
 """
     # save the template at mail/template.txt
-    with open("mail/template.txt", "w") as file:
+    with open("resources/mail/template.txt", "w") as file:
         file.write(email_template)
 
     # gmail authenticator passcode

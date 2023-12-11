@@ -1,19 +1,9 @@
-.logo
+input
 {
-    width: 60px;
-    border-radius: 100px;
-}
-a
-{
-    color: beige;
-}
-.publicMsg
-{
-    margin-top: 10px;
-    margin-left: 100px;
-}
-
-#takeCourse
-{
-    text-decoration: none;
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
 }
