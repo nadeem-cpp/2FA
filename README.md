@@ -14,7 +14,7 @@ This Flask app provides a simple and secure Two-Factor Authentication (2FA) syst
 
 1. **Setup**:
 
-    Run the following command to initialize the project. This setup will ask for your Gmail ID and app password. If you choose Google Authenticator, this step is exempt.
+    Run the following command to initialize the project. This setup will ask for your Gmail ID and app password.
 
     ```bash
     python init.py
@@ -30,14 +30,15 @@ This Flask app provides a simple and secure Two-Factor Authentication (2FA) syst
 
     - **Generate OTP**: `http://localhost:5000/generate_otp`
         - Method: `POST`
+        - Body: { "mail": "userEmail@mail.com" }
         - Parameters: None
-        - Returns: JSON with generated OTP and provisioning URL for Google Authenticator.
+        - Returns: A successful Response will be 200.
 
     - **Authenticate**: `http://localhost:5000/authenticate`
         - Method: `POST`
-        - Parameters: 
-            - `otp`: The OTP to be verified.
-            - `email` (optional): If using email OTP, provide the email address.
+        - Body: 
+            - {`otp`: The OTP to be verified }
+        - Returns: A successful Response will be 200.
 
 ## Example Usage
 
@@ -65,8 +66,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 For questions or inquiries, feel free to contact the project maintainer:
 
-- Your Name
-- Your Email Address
+- Muhammad Nadeem
 
 ---
 

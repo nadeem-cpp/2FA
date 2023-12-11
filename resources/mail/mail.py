@@ -16,8 +16,6 @@ def template(name: str, otp,):
 def send_mail(send_to: str, name: str, otp):
     message = template(name, otp)
     my_email = environ.get("FROM")
-    # enable 2 factors authentication on gmail then create app password and paste it here
-    # my_password = "pcrprqrzvuwroozy"
     my_password = environ.get("APP_PASSWORD")
     with smtplib.SMTP("smtp.gmail.com") as email_conn:
         email_conn.starttls()

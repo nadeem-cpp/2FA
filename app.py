@@ -21,10 +21,5 @@ def index():
     return "this is a 2FA application running on flask"
 
 
-@app.route('/auth')
-def admin():
-    return render_template("auth.html")
-
-
 if __name__ == '__main__':
     app.run()
