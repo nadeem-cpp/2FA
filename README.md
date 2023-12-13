@@ -62,12 +62,6 @@ Contributions are welcome! If you have suggestions, bug reports, or want to cont
 
 This project is open-source and available under the [MIT License](LICENSE).
 
-## Contact
-
-For questions or inquiries, feel free to contact the project maintainer:
-
-- Muhammad Nadeem
-
 ---
 
 Thank you for using this Two-Factor Authentication Flask App. We hope it enhances the security of your application by implementing 2FA seamlessly.
