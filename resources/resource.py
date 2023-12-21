@@ -2,6 +2,7 @@ from database.models import User
 from flask import request, jsonify, session
 from flask_restful import Resource
 from resources.otp.totp import generate_totp
+from resources.mail.mail import mail_helper
 
 
 class Otp(Resource):
@@ -12,11 +13,9 @@ class Otp(Resource):
             mail = data.get("mail")
             session["mail"] = mail
             user_secret = User.get_or_generate_secret(email=mail)
-            print(f"user secret is {user_secret}")
             otp = generate_totp(user_secret)
-            print(f"otp is {otp}")
             session["otp"] = otp
-            # mail_helper(mail, otp)
+            mail_helper(mail, otp)
             return jsonify({
                 "code": 200,
                 "msg": "OTP sent via email!"

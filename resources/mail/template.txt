@@ -1,17 +1,16 @@
-Subject: freelancer Two-Factor Authentication Code
+Subject: nadeem Two-Factor Authentication Code
 
-        Dear [user],
+Dear [user],
 
-        To enhance the security of your freelancer account, please use the following One-Time Password (OTP) for authentication:
+To enhance the security of your nadeem account, please use the following One-Time Password (OTP) for authentication:
 
-        Your OTP: [otp]
+Your OTP: [otp]
 
-        This code is valid for the next [time duration]. If you did not attempt to log in, please secure your account and contact us.
+This code is valid for the next [time duration]. If you did not attempt to log in, please secure your account and contact us.
 
-        Thank you for choosing freelancer.
+Thank you for choosing nadeem.
 
-        Best regards,
+Best regards,
 
-        freelancer
-        Contact Us at: freelancer.com
-        
+nadeem
+Contact Us at: muhammadnad1001100@gmail.com

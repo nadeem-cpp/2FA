@@ -34,6 +34,8 @@ Contact Us at: {sender_mail}
         f"Enter Gmail APP password.\nFor guide on how to create one\nClick here:{app_password_guide}\n")
     # save secrets in db/ or save it in aws secret managers for security / or env variables
 
+    print("Congratulations\nYou App setup is completed, You can noe run the app")
+
 
 def google_method_init():
     pass
@@ -50,8 +52,9 @@ def init_function():
             init_required = False
         elif choice == "2":
             environ["METHOD"] = "auth"
-            google_method_init()
-            init_required = False
+            print("Incoming")
+            # google_method_init()
+            # init_required = False
         else:
             print("Kindly choose between 1 and 2")
 
